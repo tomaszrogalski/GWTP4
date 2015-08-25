@@ -79,8 +79,6 @@ public class WyswietlFakturePresenter
 		///////////////
 		WyslijListePozycjiDoWyswietleniaEvent.fire(this, listaFaktur.get(indexListyFaktury).getPozycjeList());
 
-		// pokazPozycjePresenter.setListaPozycji(listaFaktur.get(indexListyFaktury).getPozycjeList());
-		// pokazPozycjePresenter.ustawieniaPozycja();
 	}
 
 	@Override

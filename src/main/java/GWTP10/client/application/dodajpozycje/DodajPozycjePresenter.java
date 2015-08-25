@@ -1,5 +1,7 @@
 package GWTP10.client.application.dodajpozycje;
 
+import java.util.List;
+
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.inject.Inject;
 import com.google.web.bindery.event.shared.EventBus;
@@ -7,6 +9,8 @@ import com.gwtplatform.mvp.client.HasUiHandlers;
 import com.gwtplatform.mvp.client.PopupView;
 import com.gwtplatform.mvp.client.PresenterWidget;
 
+import GWTP10.client.application.WyslijListePozycjiDoWyswietleniaEvent;
+import GWTP10.client.application.WyslijPozycjeDoFakturyDoDodaniaEvent;
 import GWTP10.serwer.Pozycja;
 
 public class DodajPozycjePresenter extends PresenterWidget<DodajPozycjePresenter.MyView>
@@ -19,7 +23,10 @@ public class DodajPozycjePresenter extends PresenterWidget<DodajPozycjePresenter
 		public TextBox getTextboxIlosc();
 	}
 
-	private Pozycja pozycja;
+	private List<Pozycja> listaPozycji;
+
+	@Inject
+	private static EventBus eventBus;
 
 	@Inject
 	DodajPozycjePresenter(EventBus eventBus, MyView view) {
@@ -31,15 +38,14 @@ public class DodajPozycjePresenter extends PresenterWidget<DodajPozycjePresenter
 	@Override
 	public void buttonAkcjaDodajPozycje() {
 
-		pozycja = new Pozycja(getView().getTextBoxNazwa().getText(), getView().getTextBoxCena().getText(),
+		Pozycja pozycja = new Pozycja(getView().getTextBoxNazwa().getText(), getView().getTextBoxCena().getText(),
 				getView().getTextboxIlosc().getText());
+		listaPozycji.add(pozycja);
+		WyslijPozycjeDoFakturyDoDodaniaEvent.fire(this, listaPozycji);
 
 		getView().getTextBoxNazwa().setText("");
 		getView().getTextBoxCena().setText("");
 		getView().getTextboxIlosc().setText("");
 	}
 
-	public Pozycja getPozycja() {
-		return pozycja;
-	}
 }

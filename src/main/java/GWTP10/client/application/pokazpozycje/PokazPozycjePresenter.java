@@ -25,22 +25,6 @@ public class PokazPozycjePresenter extends PresenterWidget<PokazPozycjePresenter
 		public TextBox getTextboxIlosc();
 	}
 
-	// /////////////////////
-	// public interface WyslijListePozycjiHandlers {
-	// HandlerRegistration
-	// addComplexEventHandler(WyslijListePozycjiDoWyswietleniaEvent.WyslijListePozycjiDoWyswietleniaHandler
-	// handler, Object source);
-	// }
-	////////////////
-	// public HandlerRegistration
-	// addComplexEventHandler(WyslijListePozycjiDoWyswietleniaEvent.WyslijListePozycjiDoWyswietleniaHandler
-	// handler, Object source) {
-	// HandlerRegistration hr = (HandlerRegistration)
-	// getEventBus().addHandlerToSource(WyslijListePozycjiDoWyswietleniaEvent.TYPE,
-	// source, handler);
-	// registerHandler(hr);
-	// return hr;
-	// }
 	//////////////////////////////////////////////////////////////
 	private List<Pozycja> listaPozycji = new ArrayList<>();
 

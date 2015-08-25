@@ -15,13 +15,16 @@ import com.gwtplatform.mvp.client.proxy.PlaceManager;
 import com.gwtplatform.mvp.client.proxy.ProxyPlace;
 import com.gwtplatform.mvp.shared.proxy.PlaceRequest;
 
+import GWTP10.client.application.WyslijListePozycjiDoWyswietleniaEvent;
+import GWTP10.client.application.WyslijPozycjeDoFakturyDoDodaniaEvent;
+import GWTP10.client.application.WyslijPozycjeDoFakturyDoDodaniaEvent.WyslijPozycjeDoFakturyDoDodaniaHandler;
 import GWTP10.client.application.dodajpozycje.DodajPozycjePresenter;
 import GWTP10.client.place.NameTokens;
 import GWTP10.serwer.Faktura;
 import GWTP10.serwer.Pozycja;
 
 public class DodajFakturePresenter extends Presenter<DodajFakturePresenter.MyView, DodajFakturePresenter.MyProxy>
-		implements DodajFaktureUiHandlers {
+		implements DodajFaktureUiHandlers, WyslijPozycjeDoFakturyDoDodaniaHandler {
 	interface MyView extends View, HasUiHandlers<DodajFaktureUiHandlers> {
 		public TextBox getTextBoxNrFaktury();
 
@@ -64,11 +67,19 @@ public class DodajFakturePresenter extends Presenter<DodajFakturePresenter.MyVie
 
 	@Override
 	public void buttonAkcjaDodajFakture() {
+		addRegisteredHandler(WyslijPozycjeDoFakturyDoDodaniaEvent.getType(), this);
 
 		Faktura faktura = new Faktura(getView().getTextBoxImie().getText(), getView().getTextboxNazwisko().getText(),
 				listaPozycji);
 
 		getView().getTextBoxImie().setText("");
 		getView().getTextboxNazwisko().setText("");
+	}
+
+	@Override
+	public void onWyslijPozycjeDoFakturyDoDodania(WyslijPozycjeDoFakturyDoDodaniaEvent event) {
+		for (Pozycja pozycja : event.getListaPozycji()) {
+			listaPozycji.add(pozycja);
+		}
 	}
 }
