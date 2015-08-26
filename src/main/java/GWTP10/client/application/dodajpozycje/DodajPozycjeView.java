@@ -37,6 +37,7 @@ class DodajPozycjeView extends PopupViewWithUiHandlers<DodajPozycjeUiHandlers>im
 	void dodajClick(ClickEvent e) {
 		getUiHandlers().buttonAkcjaDodajPozycje();
 		this.hide();
+		
 	}
 
 	@UiHandler("buttonWstecz")

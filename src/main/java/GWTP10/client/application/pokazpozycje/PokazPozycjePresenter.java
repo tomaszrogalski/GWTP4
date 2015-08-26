@@ -30,10 +30,7 @@ public class PokazPozycjePresenter extends PresenterWidget<PokazPozycjePresenter
 
 	@Override
 	public void onWyslijListePozycjiDoWyswietlenia(WyslijListePozycjiDoWyswietleniaEvent event) {
-		// listaPozycji = event.getListaPozycji();
-		for (Pozycja pozycja : event.getListaPozycji()) {
-			listaPozycji.add(pozycja);
-		}
+		listaPozycji = event.getListaPozycji();
 		ustawieniaPozycja();
 	}
 
@@ -47,7 +44,7 @@ public class PokazPozycjePresenter extends PresenterWidget<PokazPozycjePresenter
 		getView().setUiHandlers(this);
 		/////////////////////////////////////////////////////////////////////
 		addRegisteredHandler(WyslijListePozycjiDoWyswietleniaEvent.getType(), this);
-	
+
 	}
 
 	public void ustawieniaPozycja() {

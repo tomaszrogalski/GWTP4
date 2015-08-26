@@ -1,5 +1,6 @@
 package GWTP10.client.application;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.google.gwt.event.shared.EventHandler;

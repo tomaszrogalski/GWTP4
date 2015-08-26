@@ -29,6 +29,10 @@ public class Faktura {
 
 
 
+	public static int getNrFakturyStatic() {
+		return nrFakturyStatic;
+	}
+
 	public Faktura() {
 		super();
 	}

@@ -37,4 +37,10 @@ public class Pozycja {
 		this.ilosc = ilosc;
 	}
 
+	@Override
+	public String toString() {
+
+		return nazwa + "," + cenaJednostkowa + "," + ilosc;
+	}
+
 }

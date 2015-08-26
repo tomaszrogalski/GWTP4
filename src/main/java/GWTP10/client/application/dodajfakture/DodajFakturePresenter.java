@@ -15,23 +15,20 @@ import com.gwtplatform.mvp.client.proxy.PlaceManager;
 import com.gwtplatform.mvp.client.proxy.ProxyPlace;
 import com.gwtplatform.mvp.shared.proxy.PlaceRequest;
 
-import GWTP10.client.application.WyslijListePozycjiDoWyswietleniaEvent;
-import GWTP10.client.application.WyslijPozycjeDoFakturyDoDodaniaEvent;
-import GWTP10.client.application.WyslijPozycjeDoFakturyDoDodaniaEvent.WyslijPozycjeDoFakturyDoDodaniaHandler;
+import GWTP10.client.application.WyslijFaktureDoWyswietleniaEvent;
 import GWTP10.client.application.dodajpozycje.DodajPozycjePresenter;
 import GWTP10.client.place.NameTokens;
 import GWTP10.serwer.Faktura;
 import GWTP10.serwer.Pozycja;
 
 public class DodajFakturePresenter extends Presenter<DodajFakturePresenter.MyView, DodajFakturePresenter.MyProxy>
-		implements DodajFaktureUiHandlers, WyslijPozycjeDoFakturyDoDodaniaHandler {
+		implements DodajFaktureUiHandlers {
 	interface MyView extends View, HasUiHandlers<DodajFaktureUiHandlers> {
 		public TextBox getTextBoxNrFaktury();
 
 		public TextBox getTextBoxImie();
 
 		public TextBox getTextboxNazwisko();
-
 	}
 
 	private List<Pozycja> listaPozycji = new ArrayList<>();
@@ -50,6 +47,8 @@ public class DodajFakturePresenter extends Presenter<DodajFakturePresenter.MyVie
 	DodajFakturePresenter(EventBus eventBus, MyView view, MyProxy proxy, DodajPozycjePresenter dodajPozycjePresenter) {
 		super(eventBus, view, proxy, RevealType.Root);
 		this.dodajPozycjePresenter = dodajPozycjePresenter;
+		getView().getTextBoxNrFaktury().setEnabled(false);
+
 		getView().setUiHandlers(this);
 	}
 
@@ -66,20 +65,33 @@ public class DodajFakturePresenter extends Presenter<DodajFakturePresenter.MyVie
 	}
 
 	@Override
-	public void buttonAkcjaDodajFakture() {
-		addRegisteredHandler(WyslijPozycjeDoFakturyDoDodaniaEvent.getType(), this);
+	public void prepareFromRequest(PlaceRequest request) {
+		super.prepareFromRequest(request);
+		String pozycja;
 
-		Faktura faktura = new Faktura(getView().getTextBoxImie().getText(), getView().getTextboxNazwisko().getText(),
-				listaPozycji);
+		pozycja = request.getParameter("pozycja", "cos");
 
-		getView().getTextBoxImie().setText("");
-		getView().getTextboxNazwisko().setText("");
+		String[] pozycjaSkladowe = pozycja.split(",");
+		String name = pozycjaSkladowe[0];
+		String cena = pozycjaSkladowe[1];
+		String ilosc = pozycjaSkladowe[2];
+		if (!pozycja.equals("cos")) {
+			listaPozycji.clear();
+			listaPozycji.add(new Pozycja(name, cena, ilosc));
+		}
+
 	}
 
 	@Override
-	public void onWyslijPozycjeDoFakturyDoDodania(WyslijPozycjeDoFakturyDoDodaniaEvent event) {
-		for (Pozycja pozycja : event.getListaPozycji()) {
-			listaPozycji.add(pozycja);
-		}
+	public void buttonAkcjaDodajFakture() {
+		Faktura faktura = new Faktura(getView().getTextBoxImie().getText(), getView().getTextboxNazwisko().getText(),
+				listaPozycji);
+
+		WyslijFaktureDoWyswietleniaEvent.fire(this, faktura);
+		PlaceRequest responsePlaceRequest = new PlaceRequest.Builder().nameToken(NameTokens.wyswietlFakture).build();
+		placeManager.revealPlace(responsePlaceRequest);
+
+		getView().getTextBoxNrFaktury().setText("");
+		getView().getTextBoxNrFaktury().setText("");
 	}
 }
