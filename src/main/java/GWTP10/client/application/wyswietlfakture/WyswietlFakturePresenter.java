@@ -3,7 +3,9 @@ package GWTP10.client.application.wyswietlfakture;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.cellview.client.DataGrid;
+import com.google.gwt.user.cellview.client.TextColumn;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.inject.Inject;
 import com.google.web.bindery.event.shared.EventBus;
@@ -18,7 +20,6 @@ import com.gwtplatform.mvp.shared.proxy.PlaceRequest;
 
 import GWTP10.client.application.WyslijFaktureDoWyswietleniaEvent;
 import GWTP10.client.application.WyslijFaktureDoWyswietleniaEvent.WyslijFaktureDoWyswietleniaHandler;
-import GWTP10.client.application.WyslijListePozycjiDoWyswietleniaEvent;
 import GWTP10.client.application.pokazpozycje.PokazPozycjePresenter;
 import GWTP10.client.place.NameTokens;
 import GWTP10.serwer.Faktura;
@@ -34,7 +35,8 @@ public class WyswietlFakturePresenter
 
 		public TextBox getTextboxNazwisko();
 
-		public void setButtonPokazPozycje(Button buttonPokazPozycje);
+		public DataGrid<Pozycja> getDataGrid();
+
 	}
 
 	private List<Faktura> listaFaktur = new ArrayList<>();
@@ -60,24 +62,21 @@ public class WyswietlFakturePresenter
 		this.pokazPozycjePresenter = pokazPozycjePresenter;
 
 		getView().setUiHandlers(this);
+
 	}
 
 	@Override
 	public void onWyslijFaktureDoWyswietlenia(WyslijFaktureDoWyswietleniaEvent event) {
 		listaFaktur.add(event.getFaktura());
+		for (Pozycja faktura : event.getFaktura().getPozycjeList()) {
+			Window.alert(faktura.toString());
+		}
 	}
 
 	@Override
 	public void prepareFromRequest(PlaceRequest request) {
 		super.prepareFromRequest(request);
 		addRegisteredHandler(WyslijFaktureDoWyswietleniaEvent.getType(), this);
-	}
-
-	@Override
-	public void buttonAkcjaWyswietlPozycje() {
-		addToPopupSlot(pokazPozycjePresenter);
-		WyslijListePozycjiDoWyswietleniaEvent.fire(this, listaFaktur.get(indexListyFaktury).getPozycjeList());
-
 	}
 
 	@Override
@@ -93,6 +92,7 @@ public class WyswietlFakturePresenter
 		List<Pozycja> listaPozycji2 = new ArrayList<>();
 		listaPozycji2.add(new Pozycja("Samochod", "30'000", "4"));
 		listaPozycji.add(new Pozycja("Zeszyt", "0.30", "100"));
+		listaPozycji.add(new Pozycja("Zeszyt2", "0.30", "100"));
 
 		listaFaktur.add(new Faktura("Adam", "Adamowicz", listaPozycji2));
 		listaFaktur.add(new Faktura("Tomek", "Tomaszewicz", listaPozycji));
@@ -105,6 +105,7 @@ public class WyswietlFakturePresenter
 		getView().getTextBoxNrFaktury().setEnabled(false);
 
 		wyswietlFakture();
+
 		super.onBind();
 	}
 
@@ -112,10 +113,20 @@ public class WyswietlFakturePresenter
 		getView().getTextBoxImie().setText(listaFaktur.get(indexListyFaktury).getImie());
 		getView().getTextboxNazwisko().setText(listaFaktur.get(indexListyFaktury).getNazwisko());
 		getView().getTextBoxNrFaktury().setText(listaFaktur.get(indexListyFaktury).getNrFaktury().toString());
+
+		////////////////////////////
+		getView().getDataGrid().setRowCount(4);
+		getView().getDataGrid().setWidth("400px");
+		getView().getDataGrid().setHeight("200px");
+
+		getView().getDataGrid().setRowData(listaFaktur.get(indexListyFaktury).getPozycjeList());
+
+		/////////////////
 	}
 
 	@Override
 	public void buttonAkcjaWybierzPoprzedniaFakture() {
+
 		if (indexListyFaktury != 0) {
 			indexListyFaktury--;
 		}
