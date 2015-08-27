@@ -6,15 +6,15 @@ import com.google.gwt.event.shared.HasHandlers;
 
 import GWTP10.serwer.Faktura;
 
-public class WyslijFaktureDoWyswietleniaEvent extends GwtEvent<WyslijFaktureDoWyswietleniaEvent.WyslijFaktureDoWyswietleniaHandler> {
-    private static Type<WyslijFaktureDoWyswietleniaHandler> TYPE = new Type<WyslijFaktureDoWyswietleniaHandler>();
-    
-    public interface WyslijFaktureDoWyswietleniaHandler extends EventHandler {
-        void onWyslijFaktureDoWyswietlenia(WyslijFaktureDoWyswietleniaEvent event);
-    }
-    
-    
-    Faktura faktura;
+public class WyslijFaktureDoWyswietleniaEvent
+		extends GwtEvent<WyslijFaktureDoWyswietleniaEvent.WyslijFaktureDoWyswietleniaHandler> {
+	private static Type<WyslijFaktureDoWyswietleniaHandler> TYPE = new Type<WyslijFaktureDoWyswietleniaHandler>();
+
+	public interface WyslijFaktureDoWyswietleniaHandler extends EventHandler {
+		void onWyslijFaktureDoWyswietlenia(WyslijFaktureDoWyswietleniaEvent event);
+	}
+
+	Faktura faktura;
 
 	WyslijFaktureDoWyswietleniaEvent(final Faktura faktura) {
 		this.faktura = faktura;

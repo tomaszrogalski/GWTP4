@@ -14,10 +14,11 @@
 	<inherits name='com.gwtplatform.dispatch.Dispatch' />
 
 	<inherits name='com.gwtplatform.mvp.MvpWithEntryPoint' />
+	<!-- Ta linia dodana bo faktura i poyzcja sa w tym pathu -->
 	<source path='serwer' />
 	<source path='client' />
 	<source path='shared' />
-<!-- 	tu ymiana y set na extends -->
+
 	<extend-configuration-property name="gin.ginjector.modules"
 		value="GWTP10.client.gin.ClientModule" />
 </module>

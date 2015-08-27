@@ -39,10 +39,10 @@
 
 		<g:HorizontalPanel styleName="{style.horizontal_panel}">
 			<g:Label text="4. POZYCJE: " styleName="{style.label}"></g:Label>
-
+	<c:DataGrid ui:field='dataGrid'></c:DataGrid>
 			
 		</g:HorizontalPanel>
-		<c:DataGrid ui:field='dataGrid'></c:DataGrid>
+	
 
 
 

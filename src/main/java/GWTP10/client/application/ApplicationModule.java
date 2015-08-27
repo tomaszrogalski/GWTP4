@@ -11,11 +11,9 @@ import GWTP10.client.application.wyswietlfakture.WyswietlFaktureModule;
 public class ApplicationModule extends AbstractPresenterModule {
 	@Override
 	protected void configure() {
-
 		install(new DodajPozycjeModule());
 		install(new PokazPozycjeModule());
 		install(new WyswietlFaktureModule());
-
 		install(new DodajFaktureModule());
 		install(new HomeModule());
 

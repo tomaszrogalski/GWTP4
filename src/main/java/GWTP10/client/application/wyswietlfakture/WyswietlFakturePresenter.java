@@ -67,32 +67,36 @@ public class WyswietlFakturePresenter
 
 	@Override
 	public void onWyslijFaktureDoWyswietlenia(WyslijFaktureDoWyswietleniaEvent event) {
+
 		listaFaktur.add(event.getFaktura());
-		for (Pozycja faktura : event.getFaktura().getPozycjeList()) {
-			Window.alert(faktura.toString());
-		}
 	}
 
 	@Override
 	public void prepareFromRequest(PlaceRequest request) {
+
 		super.prepareFromRequest(request);
-		addRegisteredHandler(WyslijFaktureDoWyswietleniaEvent.getType(), this);
+
 	}
 
 	@Override
 	public void buttonAkcjaPrzejdzDoDodajFakture() {
-		placeManager.setOnLeaveConfirmation("Do you really want to leave?");
+		// placeManager.setOnLeaveConfirmation("Do you really want to leave?");
 		PlaceRequest responsePlaceRequest = new PlaceRequest.Builder().nameToken(NameTokens.dodajFakture).build();
 		placeManager.revealPlace(responsePlaceRequest);
 	}
 
 	@Override
 	protected void onBind() {
+		addRegisteredHandler(WyslijFaktureDoWyswietleniaEvent.getType(), this);
 		List<Pozycja> listaPozycji = new ArrayList<>();
 		List<Pozycja> listaPozycji2 = new ArrayList<>();
 		listaPozycji2.add(new Pozycja("Samochod", "30'000", "4"));
-		listaPozycji.add(new Pozycja("Zeszyt", "0.30", "100"));
+		listaPozycji.add(new Pozycja("Zeszyt1", "0.30", "100"));
 		listaPozycji.add(new Pozycja("Zeszyt2", "0.30", "100"));
+		listaPozycji.add(new Pozycja("Zeszyt3", "0.30", "100"));
+		listaPozycji.add(new Pozycja("Zeszyt4", "0.30", "100"));
+		listaPozycji.add(new Pozycja("Zeszyt5", "0.30", "100"));
+		listaPozycji.add(new Pozycja("Zeszyt6", "0.30", "100"));
 
 		listaFaktur.add(new Faktura("Adam", "Adamowicz", listaPozycji2));
 		listaFaktur.add(new Faktura("Tomek", "Tomaszewicz", listaPozycji));
@@ -115,9 +119,8 @@ public class WyswietlFakturePresenter
 		getView().getTextBoxNrFaktury().setText(listaFaktur.get(indexListyFaktury).getNrFaktury().toString());
 
 		////////////////////////////
-		getView().getDataGrid().setRowCount(4);
 		getView().getDataGrid().setWidth("400px");
-		getView().getDataGrid().setHeight("200px");
+		getView().getDataGrid().setHeight("100px");
 
 		getView().getDataGrid().setRowData(listaFaktur.get(indexListyFaktury).getPozycjeList());
 

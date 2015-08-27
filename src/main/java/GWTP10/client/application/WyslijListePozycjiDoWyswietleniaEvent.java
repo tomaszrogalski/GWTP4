@@ -22,6 +22,7 @@ public class WyslijListePozycjiDoWyswietleniaEvent
 
 	////////////////////
 	public WyslijListePozycjiDoWyswietleniaEvent(List<Pozycja> listaPozycji) {
+		
 		this.listaPozycji = listaPozycji;
 	}
 

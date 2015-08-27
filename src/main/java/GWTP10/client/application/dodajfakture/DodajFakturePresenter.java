@@ -55,12 +55,12 @@ public class DodajFakturePresenter extends Presenter<DodajFakturePresenter.MyVie
 	@Override
 	public void buttonAkcjaDodajPozycje() {
 		addToPopupSlot(dodajPozycjePresenter);
-	
+
 	}
 
 	@Override
 	public void buttonAkcjaCofnijDoWywswietlFaktura() {
-		placeManager.setOnLeaveConfirmation("Do you really want to leave?");
+		// placeManager.setOnLeaveConfirmation("Do you really want to leave?");
 		PlaceRequest responsePlaceRequest = new PlaceRequest.Builder().nameToken(NameTokens.wyswietlFakture).build();
 		placeManager.revealPlace(responsePlaceRequest);
 	}
@@ -71,7 +71,6 @@ public class DodajFakturePresenter extends Presenter<DodajFakturePresenter.MyVie
 		String pozycja;
 
 		pozycja = request.getParameter("pozycja", "cos");
-
 		String[] pozycjaSkladowe = pozycja.split(",");
 		String name = pozycjaSkladowe[0];
 		String cena = pozycjaSkladowe[1];
@@ -81,6 +80,14 @@ public class DodajFakturePresenter extends Presenter<DodajFakturePresenter.MyVie
 			listaPozycji.add(new Pozycja(name, cena, ilosc));
 		}
 
+	}
+
+	@Override
+	protected void onHide() {
+		listaPozycji = new ArrayList<>();
+		getView().getTextBoxImie().setText("");
+		getView().getTextboxNazwisko().setText("");
+		super.onHide();
 	}
 
 	@Override
