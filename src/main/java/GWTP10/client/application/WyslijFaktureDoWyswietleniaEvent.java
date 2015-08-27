@@ -41,9 +41,4 @@ public class WyslijFaktureDoWyswietleniaEvent
 	public Faktura getFaktura() {
 		return faktura;
 	}
-
-	public void setFaktura(Faktura faktura) {
-		this.faktura = faktura;
-	}
-
 }

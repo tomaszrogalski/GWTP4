@@ -1,6 +1,5 @@
 package GWTP10.client.application.home;
 
-import com.google.gwt.user.client.ui.TextBox;
 import com.google.inject.Inject;
 import com.google.web.bindery.event.shared.EventBus;
 import com.gwtplatform.mvp.client.Presenter;
@@ -14,7 +13,7 @@ import GWTP10.client.place.NameTokens;
 
 public class HomePagePresenter extends Presenter<HomePagePresenter.MyView, HomePagePresenter.MyProxy> {
 	public interface MyView extends View {
-		
+
 	}
 
 	@ProxyStandard
@@ -22,7 +21,7 @@ public class HomePagePresenter extends Presenter<HomePagePresenter.MyView, HomeP
 	public interface MyProxy extends ProxyPlace<HomePagePresenter> {
 	}
 
-	//
+	
 	@Inject
 	HomePagePresenter(EventBus eventBus, MyView view, MyProxy proxy) {
 		super(eventBus, view, proxy, ApplicationPresenter.SLOT_SetMainContent);

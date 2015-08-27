@@ -1,6 +1,5 @@
 package GWTP10.client.application;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import com.google.gwt.event.shared.EventHandler;
@@ -17,16 +16,13 @@ public class WyslijListePozycjiDoWyswietleniaEvent
 		void onWyslijListePozycjiDoWyswietlenia(WyslijListePozycjiDoWyswietleniaEvent event);
 	}
 
-	//////////////////
 	List<Pozycja> listaPozycji;
 
-	////////////////////
 	public WyslijListePozycjiDoWyswietleniaEvent(List<Pozycja> listaPozycji) {
-		
+
 		this.listaPozycji = listaPozycji;
 	}
 
-	///////////////////
 	public static void fire(HasHandlers source, List<Pozycja> listaPozycji) {
 		source.fireEvent(new WyslijListePozycjiDoWyswietleniaEvent(listaPozycji));
 	}
@@ -48,11 +44,4 @@ public class WyslijListePozycjiDoWyswietleniaEvent
 	public List<Pozycja> getListaPozycji() {
 		return listaPozycji;
 	}
-
-	public void setListaPozycji(List<Pozycja> listaPozycji) {
-		this.listaPozycji = listaPozycji;
-	}
-	
-	
-
 }

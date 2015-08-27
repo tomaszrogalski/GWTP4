@@ -9,8 +9,6 @@ import com.gwtplatform.mvp.client.ViewImpl;
 public class HomePageView extends ViewImpl implements HomePagePresenter.MyView {
 	public interface Binder extends UiBinder<Widget, HomePageView> {
 	}
-
-
 	@Inject
 	HomePageView(Binder uiBinder) {
 		initWidget(uiBinder.createAndBindUi(this));

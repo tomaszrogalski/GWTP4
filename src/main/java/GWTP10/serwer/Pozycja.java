@@ -39,8 +39,6 @@ public class Pozycja {
 
 	@Override
 	public String toString() {
-
 		return nazwa + "," + cenaJednostkowa + "," + ilosc;
 	}
-
 }

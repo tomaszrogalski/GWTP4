@@ -39,12 +39,9 @@
 
 		<g:HorizontalPanel styleName="{style.horizontal_panel}">
 			<g:Label text="4. POZYCJE: " styleName="{style.label}"></g:Label>
-	<c:DataGrid ui:field='dataGrid'></c:DataGrid>
-			
+			<c:DataGrid ui:field='dataGrid'></c:DataGrid>
+
 		</g:HorizontalPanel>
-	
-
-
 
 		<g:HorizontalPanel styleName="{style.horizontal_panel}">
 			<g:Button text="DODAJ NOWA FAKTURE" ui:field="buttonDodajNowaFakture"></g:Button>

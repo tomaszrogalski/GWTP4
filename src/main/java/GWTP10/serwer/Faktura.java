@@ -27,8 +27,6 @@ public class Faktura {
 		this.nrFaktury = nrFaktury;
 	}
 
-
-
 	public static int getNrFakturyStatic() {
 		return nrFakturyStatic;
 	}

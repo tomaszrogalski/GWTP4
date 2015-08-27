@@ -31,7 +31,6 @@ class PokazPozycjeView extends PopupViewWithUiHandlers<PokazPozycjeUiHandlers>im
 	@Inject
 	PokazPozycjeView(EventBus eventBus, Binder uiBinder) {
 		super(eventBus);
-
 		initWidget(uiBinder.createAndBindUi(this));
 	}
 

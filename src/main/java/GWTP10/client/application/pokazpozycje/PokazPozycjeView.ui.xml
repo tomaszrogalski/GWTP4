@@ -41,6 +41,7 @@
 				<g:Button text="NASTEPNA" ui:field="buttonNastepna"></g:Button>
 				<g:Button text="POPRZEDNIA" ui:field="buttonPoprzednia"></g:Button>
 			</g:HorizontalPanel>
+			
 		</g:HTMLPanel>
 	</g:PopupPanel>
 </ui:UiBinder>

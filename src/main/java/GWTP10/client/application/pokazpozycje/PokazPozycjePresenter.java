@@ -3,7 +3,6 @@ package GWTP10.client.application.pokazpozycje;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.inject.Inject;
 import com.google.web.bindery.event.shared.EventBus;
@@ -25,7 +24,6 @@ public class PokazPozycjePresenter extends PresenterWidget<PokazPozycjePresenter
 		public TextBox getTextboxIlosc();
 	}
 
-	//////////////////////////////////////////////////////////////
 	private List<Pozycja> listaPozycji = new ArrayList<>();
 
 	@Override
@@ -40,9 +38,7 @@ public class PokazPozycjePresenter extends PresenterWidget<PokazPozycjePresenter
 	@Inject
 	PokazPozycjePresenter(EventBus eventBus, MyView view) {
 		super(eventBus, view);
-
 		getView().setUiHandlers(this);
-		/////////////////////////////////////////////////////////////////////
 		addRegisteredHandler(WyslijListePozycjiDoWyswietleniaEvent.getType(), this);
 
 	}
@@ -64,15 +60,6 @@ public class PokazPozycjePresenter extends PresenterWidget<PokazPozycjePresenter
 		getView().getTextBoxNazwa().setText(listaPozycji.get(indexListyPozycji).getNazwa());
 		getView().getTextBoxCena().setText(listaPozycji.get(indexListyPozycji).getCenaJednostkowa());
 		getView().getTextboxIlosc().setText(listaPozycji.get(indexListyPozycji).getIlosc());
-
-	}
-
-	public List<Pozycja> getListaPozycji() {
-		return listaPozycji;
-	}
-
-	public void setListaPozycji(List<Pozycja> listaPozycji) {
-		this.listaPozycji = listaPozycji;
 	}
 
 	@Override

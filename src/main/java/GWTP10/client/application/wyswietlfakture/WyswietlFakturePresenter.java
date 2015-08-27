@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.google.gwt.user.cellview.client.DataGrid;
-import com.google.gwt.user.cellview.client.TextColumn;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.inject.Inject;
 import com.google.web.bindery.event.shared.EventBus;
@@ -36,7 +34,6 @@ public class WyswietlFakturePresenter
 		public TextBox getTextboxNazwisko();
 
 		public DataGrid<Pozycja> getDataGrid();
-
 	}
 
 	private List<Faktura> listaFaktur = new ArrayList<>();
@@ -52,8 +49,6 @@ public class WyswietlFakturePresenter
 
 	@Inject
 	PlaceManager placeManager;
-	@Inject
-	private static EventBus eventBus;
 
 	@Inject
 	WyswietlFakturePresenter(EventBus eventBus, MyView view, MyProxy proxy,
@@ -67,20 +62,11 @@ public class WyswietlFakturePresenter
 
 	@Override
 	public void onWyslijFaktureDoWyswietlenia(WyslijFaktureDoWyswietleniaEvent event) {
-
 		listaFaktur.add(event.getFaktura());
 	}
 
 	@Override
-	public void prepareFromRequest(PlaceRequest request) {
-
-		super.prepareFromRequest(request);
-
-	}
-
-	@Override
 	public void buttonAkcjaPrzejdzDoDodajFakture() {
-		// placeManager.setOnLeaveConfirmation("Do you really want to leave?");
 		PlaceRequest responsePlaceRequest = new PlaceRequest.Builder().nameToken(NameTokens.dodajFakture).build();
 		placeManager.revealPlace(responsePlaceRequest);
 	}
@@ -88,8 +74,10 @@ public class WyswietlFakturePresenter
 	@Override
 	protected void onBind() {
 		addRegisteredHandler(WyslijFaktureDoWyswietleniaEvent.getType(), this);
+		
 		List<Pozycja> listaPozycji = new ArrayList<>();
 		List<Pozycja> listaPozycji2 = new ArrayList<>();
+		
 		listaPozycji2.add(new Pozycja("Samochod", "30'000", "4"));
 		listaPozycji.add(new Pozycja("Zeszyt1", "0.30", "100"));
 		listaPozycji.add(new Pozycja("Zeszyt2", "0.30", "100"));
@@ -118,18 +106,15 @@ public class WyswietlFakturePresenter
 		getView().getTextboxNazwisko().setText(listaFaktur.get(indexListyFaktury).getNazwisko());
 		getView().getTextBoxNrFaktury().setText(listaFaktur.get(indexListyFaktury).getNrFaktury().toString());
 
-		////////////////////////////
 		getView().getDataGrid().setWidth("400px");
 		getView().getDataGrid().setHeight("100px");
 
 		getView().getDataGrid().setRowData(listaFaktur.get(indexListyFaktury).getPozycjeList());
 
-		/////////////////
 	}
 
 	@Override
 	public void buttonAkcjaWybierzPoprzedniaFakture() {
-
 		if (indexListyFaktury != 0) {
 			indexListyFaktury--;
 		}

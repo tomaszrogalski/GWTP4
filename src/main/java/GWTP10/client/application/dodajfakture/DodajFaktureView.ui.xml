@@ -21,29 +21,27 @@
 
 		<g:HorizontalPanel styleName="{style.horizontal_panel}">
 			<g:Label text="1. NR FAKTURY: " styleName="{style.label}"></g:Label>
-			
 			<g:TextBox text="" ui:field="textBoxNrFaktury"></g:TextBox>
 		</g:HorizontalPanel>
-		
+
 		<g:HorizontalPanel styleName="{style.horizontal_panel}">
 			<g:Label text="2. IMIE: " ui:field="labelImie" styleName="{style.label}"></g:Label>
 			<g:TextBox text="" ui:field="textBoxImie"></g:TextBox>
 		</g:HorizontalPanel>
 
 		<g:HorizontalPanel styleName="{style.horizontal_panel}">
-			<g:Label text="3. NAZWISKO: " ui:field="labelNazwisko" styleName="{style.label}"></g:Label>
+			<g:Label text="3. NAZWISKO: " ui:field="labelNazwisko"
+				styleName="{style.label}"></g:Label>
 			<g:TextBox text="" ui:field="textboxNazwisko"></g:TextBox>
 		</g:HorizontalPanel>
 
-		
+
 		<g:HorizontalPanel styleName="{style.horizontal_panel}">
-			<g:Label text="4. POZYCJE: "  styleName="{style.label}"></g:Label>
+			<g:Label text="4. POZYCJE: " styleName="{style.label}"></g:Label>
 			<g:Button text="DODAJ POZYCJE" ui:field="buttonDodajPozycje"></g:Button>
 		</g:HorizontalPanel>
 
-
-
-<g:HorizontalPanel styleName="{style.horizontal_panel}">
+		<g:HorizontalPanel styleName="{style.horizontal_panel}">
 			<g:Button text="DODAJ" ui:field="buttonDodajFakture"></g:Button>
 			<g:Button text="WSTECZ" ui:field="buttonWstecz"></g:Button>
 		</g:HorizontalPanel>

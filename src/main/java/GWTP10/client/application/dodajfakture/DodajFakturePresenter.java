@@ -47,6 +47,7 @@ public class DodajFakturePresenter extends Presenter<DodajFakturePresenter.MyVie
 	DodajFakturePresenter(EventBus eventBus, MyView view, MyProxy proxy, DodajPozycjePresenter dodajPozycjePresenter) {
 		super(eventBus, view, proxy, RevealType.Root);
 		this.dodajPozycjePresenter = dodajPozycjePresenter;
+
 		getView().getTextBoxNrFaktury().setEnabled(false);
 
 		getView().setUiHandlers(this);
@@ -55,28 +56,27 @@ public class DodajFakturePresenter extends Presenter<DodajFakturePresenter.MyVie
 	@Override
 	public void buttonAkcjaDodajPozycje() {
 		addToPopupSlot(dodajPozycjePresenter);
-
 	}
 
 	@Override
 	public void buttonAkcjaCofnijDoWywswietlFaktura() {
-		// placeManager.setOnLeaveConfirmation("Do you really want to leave?");
-		PlaceRequest responsePlaceRequest = new PlaceRequest.Builder().nameToken(NameTokens.wyswietlFakture).build();
-		placeManager.revealPlace(responsePlaceRequest);
+		placeManager.revealPlace(new PlaceRequest.Builder().nameToken(NameTokens.wyswietlFakture).build());
 	}
 
 	@Override
 	public void prepareFromRequest(PlaceRequest request) {
 		super.prepareFromRequest(request);
+
 		String pozycja;
 
 		pozycja = request.getParameter("pozycja", "cos");
 		String[] pozycjaSkladowe = pozycja.split(",");
+
 		String name = pozycjaSkladowe[0];
 		String cena = pozycjaSkladowe[1];
 		String ilosc = pozycjaSkladowe[2];
-		if (!pozycja.equals("cos")) {
 
+		if (!pozycja.equals("cos")) {
 			listaPozycji.add(new Pozycja(name, cena, ilosc));
 		}
 
@@ -94,7 +94,6 @@ public class DodajFakturePresenter extends Presenter<DodajFakturePresenter.MyVie
 	public void buttonAkcjaDodajFakture() {
 		Faktura faktura = new Faktura(getView().getTextBoxImie().getText(), getView().getTextboxNazwisko().getText(),
 				listaPozycji);
-
 		WyslijFaktureDoWyswietleniaEvent.fire(this, faktura);
 		PlaceRequest responsePlaceRequest = new PlaceRequest.Builder().nameToken(NameTokens.wyswietlFakture).build();
 		placeManager.revealPlace(responsePlaceRequest);

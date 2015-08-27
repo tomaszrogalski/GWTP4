@@ -35,13 +35,11 @@ class DodajFaktureView extends ViewWithUiHandlers<DodajFaktureUiHandlers>impleme
 	@UiHandler("buttonDodajFakture")
 	void dodajFaktureClick(ClickEvent e) {
 		getUiHandlers().buttonAkcjaDodajFakture();
-
 	}
 
 	@UiHandler("buttonWstecz")
 	void wsteczClick(ClickEvent e) {
 		getUiHandlers().buttonAkcjaCofnijDoWywswietlFaktura();
-
 	}
 
 	@UiHandler("buttonDodajPozycje")
@@ -60,6 +58,4 @@ class DodajFaktureView extends ViewWithUiHandlers<DodajFaktureUiHandlers>impleme
 	public TextBox getTextboxNazwisko() {
 		return textboxNazwisko;
 	}
-	
-	
 }

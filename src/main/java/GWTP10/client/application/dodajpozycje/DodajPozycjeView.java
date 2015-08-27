@@ -29,7 +29,6 @@ class DodajPozycjeView extends PopupViewWithUiHandlers<DodajPozycjeUiHandlers>im
 	@Inject
 	DodajPozycjeView(EventBus eventBus, Binder uiBinder) {
 		super(eventBus);
-
 		initWidget(uiBinder.createAndBindUi(this));
 	}
 
@@ -37,7 +36,6 @@ class DodajPozycjeView extends PopupViewWithUiHandlers<DodajPozycjeUiHandlers>im
 	void dodajClick(ClickEvent e) {
 		getUiHandlers().buttonAkcjaDodajPozycje();
 		this.hide();
-		
 	}
 
 	@UiHandler("buttonWstecz")
