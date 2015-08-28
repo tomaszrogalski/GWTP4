@@ -1,6 +1,5 @@
 package GWTP10.client.application.dodajpozycje;
 
-import com.google.gwt.user.client.ui.TextBox;
 import com.google.inject.Inject;
 import com.google.web.bindery.event.shared.EventBus;
 import com.gwtplatform.mvp.client.HasUiHandlers;
@@ -15,11 +14,11 @@ import GWTP10.serwer.Pozycja;
 public class DodajPozycjePresenter extends PresenterWidget<DodajPozycjePresenter.MyView>
 		implements DodajPozycjeUiHandlers {
 	interface MyView extends PopupView, HasUiHandlers<DodajPozycjeUiHandlers> {
-		public TextBox getTextBoxNazwa();
+		Pozycja pobierzPozycje();
 
-		public TextBox getTextBoxCena();
+		void wyczyscPola();
 
-		public TextBox getTextboxIlosc();
+		public void ustaw();
 	}
 
 	@Inject
@@ -28,19 +27,18 @@ public class DodajPozycjePresenter extends PresenterWidget<DodajPozycjePresenter
 	@Inject
 	DodajPozycjePresenter(EventBus eventBus, MyView view) {
 		super(eventBus, view);
+		getView().ustaw();
 		getView().setUiHandlers(this);
 	}
 
 	@Override
 	public void buttonAkcjaDodajPozycje() {
-		Pozycja pozycja = new Pozycja(getView().getTextBoxNazwa().getText(), getView().getTextBoxCena().getText(),
-				getView().getTextboxIlosc().getText());
+		Pozycja pozycja = getView().pobierzPozycje();
 		PlaceRequest responsePlaceRequest = new PlaceRequest.Builder().nameToken(NameTokens.dodajFakture)
 				.with("pozycja", pozycja.toString()).build();
 
 		placeManager.revealPlace(responsePlaceRequest);
-		getView().getTextBoxNazwa().setText("");
-		getView().getTextBoxCena().setText("");
-		getView().getTextboxIlosc().setText("");
+
+		getView().wyczyscPola();
 	}
 }

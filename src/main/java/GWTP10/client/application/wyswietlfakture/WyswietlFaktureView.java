@@ -1,5 +1,7 @@
 package GWTP10.client.application.wyswietlfakture;
 
+import java.util.List;
+
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
@@ -61,10 +63,18 @@ class WyswietlFaktureView extends ViewWithUiHandlers<WyswietlFaktureUiHandlers>
 				return pozycja.getIlosc();
 			}
 		};
+		TextColumn<Pozycja> textColumnJednostka = new TextColumn<Pozycja>() {
+
+			@Override
+			public String getValue(Pozycja pozycja) {
+				return pozycja.getJednosta().toString();
+			}
+		};
 
 		dataGrid.addColumn(textColumnNazwa, "nazwa");
 		dataGrid.addColumn(textColumncena, "cena");
 		dataGrid.addColumn(textColumnIlosc, "ilosc");
+		dataGrid.addColumn(textColumnJednostka, "jednostka");
 	}
 
 	@UiHandler("buttonNastepnaFaktura")

@@ -78,13 +78,13 @@ public class WyswietlFakturePresenter
 		List<Pozycja> listaPozycji = new ArrayList<>();
 		List<Pozycja> listaPozycji2 = new ArrayList<>();
 		
-		listaPozycji2.add(new Pozycja("Samochod", "30'000", "4"));
-		listaPozycji.add(new Pozycja("Zeszyt1", "0.30", "100"));
-		listaPozycji.add(new Pozycja("Zeszyt2", "0.30", "100"));
-		listaPozycji.add(new Pozycja("Zeszyt3", "0.30", "100"));
-		listaPozycji.add(new Pozycja("Zeszyt4", "0.30", "100"));
-		listaPozycji.add(new Pozycja("Zeszyt5", "0.30", "100"));
-		listaPozycji.add(new Pozycja("Zeszyt6", "0.30", "100"));
+//		listaPozycji2.add(new Pozycja("Samochod", "30'000", "4","asd"));
+//		listaPozycji.add(new Pozycja("Zeszyt1", "0.30", "100"));
+//		listaPozycji.add(new Pozycja("Zeszyt2", "0.30", "100"));
+//		listaPozycji.add(new Pozycja("Zeszyt3", "0.30", "100"));
+//		listaPozycji.add(new Pozycja("Zeszyt4", "0.30", "100"));
+//		listaPozycji.add(new Pozycja("Zeszyt5", "0.30", "100"));
+//		listaPozycji.add(new Pozycja("Zeszyt6", "0.30", "100"));
 
 		listaFaktur.add(new Faktura("Adam", "Adamowicz", listaPozycji2));
 		listaFaktur.add(new Faktura("Tomek", "Tomaszewicz", listaPozycji));

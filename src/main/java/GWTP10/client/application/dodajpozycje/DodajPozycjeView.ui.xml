@@ -1,7 +1,7 @@
 <!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
-             xmlns:g="urn:import:com.google.gwt.user.client.ui">
-             	<ui:style>
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<ui:style>
 	.html_panel {
 		background-color: aqua;
 		width: 100%;
@@ -17,29 +17,34 @@
 		width: 150px;
 	}
 	</ui:style>
-    <g:PopupPanel>
-    	<g:HTMLPanel styleName="{style.html_panel}">
+	<g:PopupPanel>
+		<g:HTMLPanel styleName="{style.html_panel}">
 
-		<g:HorizontalPanel styleName="{style.horizontal_panel}">
-			<g:Label text="1. NAZWA: : " styleName="{style.label}"></g:Label>
-			
-			<g:TextBox text="" ui:field="textBoxNazwa"></g:TextBox>
-		</g:HorizontalPanel>
-		
-		<g:HorizontalPanel styleName="{style.horizontal_panel}">
-			<g:Label text="2. CENA:  " styleName="{style.label}"></g:Label>
-			<g:TextBox text="" ui:field="textBoxCena"></g:TextBox>
-		</g:HorizontalPanel>
+			<g:HorizontalPanel styleName="{style.horizontal_panel}">
+				<g:Label text="1. NAZWA: " styleName="{style.label}"></g:Label>
 
-		<g:HorizontalPanel styleName="{style.horizontal_panel}">
-			<g:Label text="3. ILOSC: " styleName="{style.label}"></g:Label>
-			<g:TextBox text="" ui:field="textboxIlosc"></g:TextBox>
-		</g:HorizontalPanel>
+				<g:TextBox text="" ui:field="nazwa"></g:TextBox>
+			</g:HorizontalPanel>
 
-		<g:HorizontalPanel styleName="{style.horizontal_panel}">
-			<g:Button text="DODAJ" ui:field="buttonDodaj"></g:Button>
-			<g:Button text="WSTECZ" ui:field="buttonWstecz"></g:Button>
-		</g:HorizontalPanel>
-	</g:HTMLPanel>
-    </g:PopupPanel>
+			<g:HorizontalPanel styleName="{style.horizontal_panel}">
+				<g:Label text="2. CENA:  " styleName="{style.label}"></g:Label>
+				<g:TextBox text="" ui:field="cenaJednostkowa"></g:TextBox>
+			</g:HorizontalPanel>
+
+			<g:HorizontalPanel styleName="{style.horizontal_panel}">
+				<g:Label text="3. ILOSC: " styleName="{style.label}"></g:Label>
+				<g:TextBox text="" ui:field="ilosc"></g:TextBox>
+			</g:HorizontalPanel>
+			<g:HorizontalPanel styleName="{style.horizontal_panel}">
+				<g:Label text="4. Jednostka: " styleName="{style.label}"></g:Label>
+				<g:ValueListBox ui:field="jednosta"></g:ValueListBox>
+
+			</g:HorizontalPanel>
+
+			<g:HorizontalPanel styleName="{style.horizontal_panel}">
+				<g:Button text="DODAJ" ui:field="buttonDodaj"></g:Button>
+				<g:Button text="WSTECZ" ui:field="buttonWstecz"></g:Button>
+			</g:HorizontalPanel>
+		</g:HTMLPanel>
+	</g:PopupPanel>
 </ui:UiBinder>

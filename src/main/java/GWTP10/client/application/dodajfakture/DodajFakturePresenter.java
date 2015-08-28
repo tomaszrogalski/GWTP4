@@ -19,6 +19,7 @@ import GWTP10.client.application.WyslijFaktureDoWyswietleniaEvent;
 import GWTP10.client.application.dodajpozycje.DodajPozycjePresenter;
 import GWTP10.client.place.NameTokens;
 import GWTP10.serwer.Faktura;
+import GWTP10.serwer.Jednostki;
 import GWTP10.serwer.Pozycja;
 
 public class DodajFakturePresenter extends Presenter<DodajFakturePresenter.MyView, DodajFakturePresenter.MyProxy>
@@ -75,9 +76,10 @@ public class DodajFakturePresenter extends Presenter<DodajFakturePresenter.MyVie
 		String name = pozycjaSkladowe[0];
 		String cena = pozycjaSkladowe[1];
 		String ilosc = pozycjaSkladowe[2];
-
+		// Jednostki jednostka = Jednostki.valueOf(pozycjaSkladowe[3]); // tu zle
+		Jednostki jednostka = Jednostki.KG;
 		if (!pozycja.equals("cos")) {
-			listaPozycji.add(new Pozycja(name, cena, ilosc));
+			listaPozycji.add(new Pozycja(name, cena, ilosc, jednostka));
 		}
 
 	}

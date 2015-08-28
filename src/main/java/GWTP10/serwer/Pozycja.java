@@ -1,16 +1,24 @@
 package GWTP10.serwer;
 
-public class Pozycja {
+import java.io.Serializable;
+
+public class Pozycja implements Serializable{
 
 	private String nazwa;
 	private String cenaJednostkowa;
 	private String ilosc;
+	private Jednostki jednosta;
 
-	public Pozycja(String nazwa, String cenaJednostkowa, String ilosc) {
+	public Pozycja(String nazwa, String cenaJednostkowa, String ilosc, Jednostki jednosta) {
 		super();
 		this.nazwa = nazwa;
 		this.cenaJednostkowa = cenaJednostkowa;
 		this.ilosc = ilosc;
+		this.jednosta = jednosta;
+	}
+
+	public Pozycja() {
+		// TODO Auto-generated constructor stub
 	}
 
 	public String getNazwa() {
@@ -37,8 +45,17 @@ public class Pozycja {
 		this.ilosc = ilosc;
 	}
 
+
+	public Jednostki getJednosta() {
+		return jednosta;
+	}
+
+	public void setJednosta(Jednostki jednosta) {
+		this.jednosta = jednosta;
+	}
+
 	@Override
 	public String toString() {
-		return nazwa + "," + cenaJednostkowa + "," + ilosc;
+		return nazwa + "," + cenaJednostkowa + "," + ilosc + "," + jednosta.toString();
 	}
 }
